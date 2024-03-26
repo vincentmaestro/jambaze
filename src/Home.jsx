@@ -18,8 +18,8 @@ const Home = () => {
         }
     };
     const navigate = useNavigate();
-    let [abc, setAbc] =  useState('./src/data/TIMELESS.jfif');
-    let covers = ['./data/Boy Alone.jpg', './data/Boy Alone.jpg', './data/TIMELESS.jfif', './data/Playboy.jpeg', './data/MIL.jpeg', './data/MMWTV.jpeg', './data/TAT(level up).jpg'];
+    let [abc, setAbc] =  useState('./TIMELESS.jfif');
+    let covers = ['./Boy Alone.jpg', './Boy Alone.jpg', './TIMELESS.jfif', './Playboy.jpeg', './MIL.jpeg', './MMWTV.jpeg', './TAT(level up).jpg'];
 
     let albums = [
         {album: 'Playboy', artist: 'Fireboy', link: '1pUJnA3OSbvVr5afqxNARZ'},
@@ -206,8 +206,8 @@ const Home = () => {
                 <div className="bg-gray-300 mb-5 py-2">
                     <i className="fa-regular fa-circle-xmark hidden sticky top-6 left-[95%] text-3xl cursor-pointer transition-all duration-300 hover:text-red-500 z-10 mobile_m:text-2xl" id="close-player" />
                     <h1 className="text-center text-3xl">Search</h1>
-                    <form className="flex justify-center items-center gap-x-[1%] py-5" onSubmit={searchMusical}>
-                        <input type="text" placeholder="song, artist, album" className="rounded-md outline-none px-4 py-[2px]" onChange={e => {searchedMusical.length == 0 ? setMusicalNotFound(false) : null, setSearchedMusical(e.target.value)}} />
+                    <form className="flex justify-center items-center gap-x-[1%] py-5 mobile:gap-x-[4%]" onSubmit={searchMusical}>
+                        <input type="text" placeholder="song, artist, album" className="rounded-md outline-none px-4 py-[2px] mobile:px-2 mobile:w-[60%]" onChange={e => {searchedMusical.length == 0 ? setMusicalNotFound(false) : null, setSearchedMusical(e.target.value)}} />
                         <button type="submit"><i className="fa-solid fa-magnifying-glass"></i></button>
                     </form>
                     {searchedMusicalResult &&
