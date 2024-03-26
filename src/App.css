@@ -1,0 +1,79 @@
+
+#root {
+    font-family: 'Poppins', sans-serif;
+}
+
+nav .nav-open {
+    right: 18%;
+}
+
+.spinner {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 10px solid rgba(212, 206, 206, 0.486);
+    border-top  : 10px solid gray;
+    position: absolute;
+    top: 40%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    animation: spin .8s ease-out infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(45deg);
+    }
+    to {
+        border-color: rgba(212, 206, 206, 0.486);
+        transform: rotate(405deg);
+    }
+}
+
+.loading-playlists {
+    animation: playlists 1.5s infinite;
+}
+
+@keyframes playlists {
+    0% {
+        background-color: rgb(68 64 60);
+    }
+    50% {
+        background-color: rgb(120 113 108);
+    }
+    100% {
+        background-color: rgb(168 162 158);
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .spinner {
+        width: 70px;
+        height: 70px;
+        border-width: 6px;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .spinner {
+        left: 43%;
+    }
+}
+
+.owl-nav {
+    display: flex;
+    justify-content: center;
+    column-gap: 30px;
+}
+
+.owl-nav button span {
+    font-size: 40px;
+}
+
+.player {
+    position: fixed;
+    z-index: 10;
+    bottom: 0;
+    left: 0;
+    height: 24%;
+}

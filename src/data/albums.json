@@ -1,0 +1,27 @@
+{
+    "albums" : [
+        {"Title" : "Naughty by nature", "Artist" : "Burna Boy", "Featured" : "Naughty by nature"},
+        {"Title" : "Bank on it", "Artist" : "Burna Boy", "Featured" : "none"},
+        {"Title" : "23", "Artist" : "Burna Boy", "Featured" : "none"},
+        {"Title" : "No fit vex", "Artist" : "Burna Boy", "Featured" : "none"},
+        {"Title" : "Onyeka", "Artist" : "Burna Boy", "Featured" : "none"},
+        {"Title" : "Way too big", "Artist" : "Burna Boy", "Featured" : "none"},
+        {"Title" : "Level up", "Artist" : "Burna Boy", "Featured" : "Youssou N'Dour"},
+        {"Title" : "Wetin dey sup", "Artist" : "Burna Boy", "Featured" : "none"},
+        {"Title" : "Real life", "Artist" : "Burna Boy", "Featured" : "Stormzy"},
+        {"Title" : "Reckless", "Artist" : "Wizkid", "Featured" : "none"},
+        {"Title" : "Ginger", "Artist" : "Wizkid", "Featured" : "Burna Boy"},
+        {"Title" : "Essence", "Artist" : "Wizkid", "Featured" : "Tems"},
+        {"Title" : "Blessed", "Artist" : "Wizkid", "Featured" : "Damian Marley"},
+        {"Title" : "Roma", "Artist" : "Wizkid", "Featured" : "Teri"},
+        {"Title" : "No Stress", "Artist" : "Wizkid", "Featured" : "none"},
+        {"Title" : "Sweet One", "Artist" : "Wizkid", "Featured" : "none"},
+        {"Title" : "Nzaza", "Artist" : "Asake", "Featured" : "none"},
+        {"Title" : "Organize", "Artist" : "Asake", "Featured" : "none"},
+        {"Title" : "Peace be unto you", "Artist" : "Asake", "Featured" : "none"},
+        {"Title" : "Dull", "Artist" : "Asake", "Featured" : "none"},
+        {"Title" : "Terminator", "Artist" : "Asake", "Featured" : "none"},
+        {"Title" : "Joha", "Artist" : "Asake", "Featured" : "none"},
+        {"Title" : "Dupe", "Artist" : "Asake", "Featured" : "none"}
+    ]
+}
