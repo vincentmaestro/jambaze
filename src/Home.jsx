@@ -19,7 +19,7 @@ const Home = () => {
     };
     const navigate = useNavigate();
     let [abc, setAbc] =  useState('./src/data/TIMELESS.jfif');
-    let covers = ['./src/data/Boy Alone.jpg', './src/data/Boy Alone.jpg', './src/data/TIMELESS.jfif', './src/data/Playboy.jpeg', './src/data/MIL.jpeg', './src/data/MMWTV.jpeg', './src/data/TAT(level up).jpg'];
+    let covers = ['./data/Boy Alone.jpg', './data/Boy Alone.jpg', './data/TIMELESS.jfif', './data/Playboy.jpeg', './data/MIL.jpeg', './data/MMWTV.jpeg', './data/TAT(level up).jpg'];
 
     let albums = [
         {album: 'Playboy', artist: 'Fireboy', link: '1pUJnA3OSbvVr5afqxNARZ'},
