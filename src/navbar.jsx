@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
 
     function openNav() {
@@ -32,7 +34,7 @@ const Navbar = () => {
 
     return (
         <nav className="flex items-center justify-center py-5 tablet:gap-x-[3%] tablet_s:justify-between tablet_s:px-[5%] tablet_s:py-3 tablet_s:sticky tablet_s:top-0 z-10 tablet_s:bg-stone-600">
-            <a href="/" className="text-xl tablet_s:text-2xl tablet_s:text-slate-100"><h1>Jambaze🔥</h1></a>
+            <Link to="/" className="text-xl tablet_s:text-2xl tablet_s:text-slate-100"><h1>Jambaze🔥</h1></Link>
             <ul className="navlinks w-[65%] flex justify-center gap-x-[4%] tablet:w-[55%] tablet_s:bg-stone-600 tablet_s:block tablet_s:fixed tablet_s:w-[44%] tablet_s:text-center tablet_s:py-4 tablet_s:rounded-xl tablet_s:top-[2%] tablet_s:right-[-100%] transition-all duration-300 mobile:w-[54%] mobile_m:w-[70%]">
                 <li className="cursor-pointer tablet_s:mb-2 text-xl tablet:text-lg tablet_s:text-white hover:text-yellow-300" onClick={closeNav}>About us</li>
                 <li className="cursor-pointer tablet_s:mb-2 text-xl tablet:text-lg tablet_s:text-white hover:text-yellow-300" onClick={closeNav}>Blog</li>
