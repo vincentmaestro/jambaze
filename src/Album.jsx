@@ -68,7 +68,7 @@ const Album = () => {
         <>
             {loading && <div className="spinner"></div>}
             {album && 
-                <div className="w-[60%] mx-auto relative laptop:w-[70%] tablet:w-[85%] mobile:w-[90%]">
+                <div className="w-[60%] mt-4 mx-auto relative laptop:w-[70%] tablet:w-[85%] mobile:w-[90%]">
                     <div className="flex items-center justify-center gap-x-[8%] bg-gradient-to-r from-gray-300 to-gray-600 rounded-2xl mb-3 py-3 mobile:bg-gradient-to-b mobile:from-gray-600 mobile:to-gray-300 mobile:flex-col mobile:py-6">
                         <div className="w-[20%] laptop_m:w-[25%] tablet:w-[30%] mobile:w-[45%] mobile_m:w-[55%] mobile_m:mt-8 mobile_s:w-[70%]">
                             <img src={album.images[1].url} alt={album.name} className="h-[150px] rounded-[7px] mobile:aspect-video mobile:object-cover" />
@@ -106,9 +106,9 @@ const Album = () => {
                         </ul>
                     </div>
                     <div ref={player}></div>
-                    <Footer />
                 </div>
             }
+            {album && <Footer />}
             {error && <p className="text-center text-xl py-5 text-gray-800">{error}</p>}
         </>
 

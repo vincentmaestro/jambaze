@@ -3,6 +3,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 nav .nav-open {
     right: 18%;
 }

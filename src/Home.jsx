@@ -18,9 +18,10 @@ const Home = () => {
         }
     };
     const navigate = useNavigate();
-    let [abc, setAbc] =  useState('./TIMELESS.jfif');
-    let covers = ['./Boy Alone.jpg', './Boy Alone.jpg', './TIMELESS.jfif', './Playboy.jpeg', './MIL.jpeg', './MMWTV.jpeg', './TAT(level up).jpg'];
 
+    const [albumCover, setAlbumCover] =  useState('./TIMELESS.jfif');
+    const covers = ['./Boy Alone.jpg', './TIMELESS.jfif', './Playboy.jpeg', './MIL.jpeg', './MMWTV.jpeg', './TAT(level up).jpg'];
+    
     let albums = [
         {album: 'Playboy', artist: 'Fireboy', link: '1pUJnA3OSbvVr5afqxNARZ'},
         {album: 'Boy alone', artist: 'Omah lay', link: '47FGKv6DgcDj9YwvoQuTMN'},
@@ -58,7 +59,6 @@ const Home = () => {
         }
     ];
 
-    const [loading, setLoading] = useState(false);
     const [playlists, setPlaylists] = useState(null);
     const [searchedMusical, setSearchedMusical] = useState('');
     const [searchedMusicalResult, setSearchedMusicalResult] = useState(null);
@@ -104,6 +104,10 @@ const Home = () => {
     }
     
     useEffect(() => {
+        const timer = setInterval(() => {
+            setAlbumCover(covers[Math.round(Math.random() * 5)])
+        }, 10000);
+
         getPlaylists()
         .then(playlists => setPlaylists(playlists))
         // .catch(err => console.error(err));
@@ -126,6 +130,8 @@ const Home = () => {
             });
         })
         // .catch(err => console.error(err));
+
+        return () => clearInterval(timer);
     }, []);
 
     async function searchMusical(e) {
@@ -193,7 +199,7 @@ const Home = () => {
                 <h1 className="text-center text-3xl mobile_m:text-2xl mobile_s:text-xl">My favourite Afrobeats albums</h1>
                 <div className="flex items-center justify-center mx-auto gap-x-[8%] py-6 tablet:gap-x-[6%] mobile:flex-col mobile:gap-y-5">
                     <div className=" laptop_s:w-[40%] mobile:w-[55%] mobile_m:w-[65%]">
-                        <img src={abc} alt="album cover" className="w-[350px] h-[300px] tablet:h-[250px] tablet_s:h-[220px] mobile_m:h-[200px]"/>
+                        <img src={albumCover} alt="album cover" className="w-[350px] h-[300px] tablet:h-[250px] tablet_s:h-[220px] mobile_m:h-[200px]"/>
                     </div>
                     <ul className="albums w-[34%] border-2 pl-3 pt-3 border-[rgba(245,159,11,0.43)] rounded-[10px] laptop_m:w-[42%] tablet:w-[46%] tablet_s:pt-0 mobile:w-[80%] mobile_m:w-[85%]">
                         {albums.map((album, index) => (

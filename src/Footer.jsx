@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-      <footer className="bg-slate-800 py-7 flex justify-center items-center gap-x-[8%] laptop_m:gap-x-[4%] tablet:gap-x-[3%] tablet_s:flex-col tablet:gap-y-[16px] tablet_s:items-stretch">
+      <footer id="footer" className="bg-slate-800 py-7 mt-7 flex justify-center items-center gap-x-[8%] laptop_m:gap-x-[4%] tablet:gap-x-[3%] tablet_s:flex-col tablet:gap-y-[16px] tablet_s:items-stretch mobile:py-5">
         <Link to="/" className="text-2xl text-slate-200 tablet:text-lg tablet_s:text-3xl tablet_s:ml-[4%] mobile:ml-[6%]"><h1>Jambaze🔥</h1></Link>
         <div className="w-[40%] flex justify-center items-center gap-x-[4%] laptop_s:gap-x-[2%] tablet_s:w-full tablet_s:gap-x-[6%] tablet_s:mb-3 mobile:gap-x-[4%] mobile_m:flex-col mobile_m:items-center mobile_m:gap-y-[14px]">
             <h1 className="text-[24px] text-slate-200 tablet:text-[18px] tablet_s:text-[24px] mobile:text-[22px] mobile_m:text-[28px]">Powered by:</h1>

@@ -10,6 +10,14 @@ import Series from "./Series";
 import NotFound from "./NotFound";
 
 function App() {
+  onclick = e => {
+    if(e.target.tagName != 'svg') {
+      document.querySelector('.open-nav').style.display = 'block';
+      document.querySelector('.navlinks').classList.remove('nav-open');
+      document.querySelector('.close-nav').style.display = 'none';
+    }
+  }
+
   return (
     <BrowserRouter>
       <Navbar />

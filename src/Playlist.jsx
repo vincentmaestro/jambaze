@@ -72,14 +72,14 @@ function Playlist () {
             {loading && <div className="spinner"></div>}
             {playlist && 
                 <div style={{background: `linear-gradient(rgba(17,24,39,0.75), rgba(17,24,39,0.75)), url(${playlist.images[0].url})`}} className="h-screen overflow-y-auto relative mobile:pt-4">
-                    <h1 className="text-center text-4xl text-gray-100 pt-2 mb-2 mobile_m:text-2xl mobile:mb-1">{playlist.name}</h1>
+                    <h1 className="text-center text-4xl text-gray-100 pt-2 mb-2 mobile_m:text-2xl mobile:mt-10">{playlist.name}</h1>
                     <p className="text-gray-200 text-center mobile_m:text-sm mobile:px-[2%]">...{playlist.description}</p>
-                    <a href={playlist.external_urls.spotify} target="blank" className="absolute w-[100px] top-[2%] right-[4%] mobile:top-[10%] mobile_m:top-[9.5%]">
+                    <a href={playlist.external_urls.spotify} target="blank" className="absolute w-[100px] top-[2%] right-[4%]">
                         <img src="/Spotify_Green.png" alt="spotify_logo" />
                     </a>
                     <div>
                         <i className="fa-regular fa-circle-xmark hidden text-white fixed left-[90%] text-3xl cursor-pointer transition-colors duration-300 hover:text-red-500 z-10 mobile:left-[4%] mobile_m:text-2xl" id="close-player" />
-                        <h1 className="text-center text-gray-100 text-4xl my-2 mobile_m:mt-6 mobile_s:mt-8">Tracks</h1>
+                        <h1 className="text-center text-gray-100 text-4xl my-2">Tracks</h1>
                         <div ref={songs}>
                             {playlist.tracks.items.map((track, index) => (
                                 <div key={index} id={track.track.uri} className="relative w-[80%] mx-auto bg-[rgba(75,85,99,0.6)] flex items-center gap-x-[2%] rounded-lg mb-3 hover:bg-gray-600 duration-200 transition-colors px-[1%] tablet:w-[85%] mobile:w-[90%] mobile:gap-x-[3%]">
@@ -104,9 +104,9 @@ function Playlist () {
                         </div>
                     </div>
                     <div ref={player}></div>
-                    <Footer />
                 </div>
             }
+            {playlist && <Footer />}
             {error && <p className="text-center text-xl py-5 text-gray-800">{error}</p>}
         </>
     );

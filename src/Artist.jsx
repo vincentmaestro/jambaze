@@ -73,7 +73,7 @@ function Artist() {
         <>
             {loading && <div className="spinner"></div>}
             {artist &&
-                <div>
+                <div className="mt-4">
                     <div className="w-[80%] mx-auto mb-10 py-6 rounded-2xl flex items-center justify-center gap-x-[10%] bg-gradient-to-r from-gray-300 to-gray-600 relative tablet:bg-gradient-to-b tablet:w-[85%] tablet:flex-col tablet:py-8 tablet:mb-6 mobile:w-[90%]">
                         <div className="w-[20%] laptop_m:w-[25%] laptop_s:w-[30%] tablet:w-[45%] mobile:w-[55%] mobile_m:w-[65%] mobile_s:w-[80%] mobile_m:mt-3">
                             <img className="h-[200px] object-cover aspect-video rounded-lg mobile:aspect-square" src={artist.about.images[1].url} alt={artist.about.name} />
@@ -133,9 +133,9 @@ function Artist() {
                         </ul>
                     </div>
                     <div ref={player}></div>
-                    <Footer />
                 </div>
             }
+            {artist && <Footer />}
             {error && <p className="text-center text-xl py-5 text-gray-800">{error}</p>}
         </>
     );
