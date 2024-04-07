@@ -75,7 +75,7 @@ function Series () {
                                     {
                                         data.videos.map((trailer, index) => (
                                             <div key={index} className="bg-gray-300" allow="picture-in-picture">
-                                                <iframe height="200" width="220" allowFullScreen src={`https://www.youtube.com/embed/${trailer.key}?controls=1&origin=localhost`}></iframe>
+                                                <iframe height="200" width="220" allowFullScreen src={`https://www.youtube.com/embed/${trailer.key}?controls=1`}></iframe>
                                                 <p className="pl-[5px]">{trailer.name}</p>
                                             </div>
                                         ))
