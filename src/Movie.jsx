@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Footer from "./Footer";
 
 function Movie () {
@@ -45,6 +46,9 @@ function Movie () {
 
     return (
         <div className="bg-gradient-to-b from-gray-500 to-gray-200">
+            <Helmet>
+                {data && <title>Jambaze | {data.movie.title}</title>}
+            </Helmet>
             { loading && <div className="spinner"></div> }
             { data && 
                 <section className='bg-gradient-to-r from-gray-500 to-zinc-900 pb-[2%]'>

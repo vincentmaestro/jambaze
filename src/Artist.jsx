@@ -1,21 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Footer from "./Footer";
-
-function Artist() {
+function Artist({ spotifyConfig }) {
     const {id} = useParams();
-    const spotifyConfig = {
-        method: 'POST',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: 'grant_type=client_credentials&client_id=b14bea6109a141b8b15e857c903a7ef5&client_secret=1ff3731d1226404e8d4aed9d07bc4b87'
-    };
     const [loading, setLoading] = useState(true);
     const [artist, setArtist] = useState();
     const [error, setError] = useState(false);
     const [showAlbum, setShowAlbum] = useState(false);
     const songs = useRef();
     const player = useRef();
-    
 
     async function getArtist() {
         const requestToken = await fetch('https://accounts.spotify.com/api/token', spotifyConfig);
@@ -71,12 +65,15 @@ function Artist() {
 
     return (
         <>
+            <Helmet>
+                {artist && <title>Jambaze | {artist.about.name}</title>}
+            </Helmet>
             {loading && <div className="spinner"></div>}
             {artist &&
                 <div className="mt-4">
                     <div className="w-[80%] mx-auto mb-10 py-6 rounded-2xl flex items-center justify-center gap-x-[10%] bg-gradient-to-r from-gray-300 to-gray-600 relative tablet:bg-gradient-to-b tablet:w-[85%] tablet:flex-col tablet:py-8 tablet:mb-6 mobile:w-[90%]">
                         <div className="w-[20%] laptop_m:w-[25%] laptop_s:w-[30%] tablet:w-[45%] mobile:w-[55%] mobile_m:w-[65%] mobile_s:w-[80%] mobile_m:mt-3">
-                            <img className="h-[200px] object-cover aspect-video rounded-lg mobile:aspect-square" src={artist.about.images[1].url} alt={artist.about.name} />
+                            <img className="h-[200px] object-cover aspect-video rounded-lg mobile:aspect-square" src={artist.about.images[1]?.url} alt={artist.about.name} />
                         </div>
                         <div className="w-[40%] laptop_s:w-[50%] tablet:mt-6 tablet:w-[70%] tablet:relative tablet:left-[12%] mobile:left-[8%] mobile_m:w-[80%]">
                             <h1 className="text-3xl mobile:text-2xl">Artist</h1>
@@ -120,7 +117,7 @@ function Artist() {
                                     <div>
                                         <h1 className="text-3xl tablet_s:mb-1 mobile_m:text-2xl mobile:mb-0">{track.name}</h1>
                                         {track.artists.map((artist, index) => (
-                                            <Link key={index} to={`/artist/${artist.id}`} className="text-xl mobile_m:text-base">{artist.name}{index + 1 !== track.artists.length ? ', ' : ''}</Link>
+                                            <a key={index} href={`/artist/${artist.id}`} className="text-xl mobile_m:text-base">{artist.name}{index + 1 !== track.artists.length ? ', ' : ''}</a>
                                         ))}
                                     </div>
                                     <div className="absolute right-[2%] w-[4%] flex items-center justify-between laptop_m:w-[6%] tablet:w-[8%] mobile:w-[10%] mobile_m:w-[12%]">

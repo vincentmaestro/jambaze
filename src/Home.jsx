@@ -1,15 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel';
 import Footer from "./Footer";
 
-const Home = () => {
-    const spotifyConfig = {
-        method: 'POST',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: 'grant_type=client_credentials&client_id=b14bea6109a141b8b15e857c903a7ef5&client_secret=1ff3731d1226404e8d4aed9d07bc4b87'
-    };
+const Home = ({ spotifyConfig }) => {
     const tmdbConfig = {
         method: 'GET',
         headers: {
@@ -195,6 +191,9 @@ const Home = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Jambaze | Home</title>
+            </Helmet>
             <section className="music mt-8 mb-12">
                 <h1 className="text-center text-3xl mobile_m:text-2xl mobile_s:text-xl">My favourite Afrobeats albums</h1>
                 <div className="flex items-center justify-center mx-auto gap-x-[8%] py-6 tablet:gap-x-[6%] mobile:flex-col mobile:gap-y-5">

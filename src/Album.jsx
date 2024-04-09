@@ -1,14 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Footer from "./Footer";
 
-const Album = () => {
+const Album = ({ spotifyConfig }) => {
     const {id} = useParams();
-    const spotifyConfig = {
-        method: 'POST',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: 'grant_type=client_credentials&client_id=b14bea6109a141b8b15e857c903a7ef5&client_secret=1ff3731d1226404e8d4aed9d07bc4b87'
-    };
     const [loading, setLoading] = useState(true);
     const [album, setAlbum] = useState(null);
     const [error, setError] = useState(false);
@@ -66,6 +62,9 @@ const Album = () => {
 
     return (
         <>
+            <Helmet>
+                {album && <title>Jambaze | Album: {album.name}</title>}
+            </Helmet>
             {loading && <div className="spinner"></div>}
             {album && 
                 <div className="w-[60%] mt-4 mx-auto relative laptop:w-[70%] tablet:w-[85%] mobile:w-[90%]">

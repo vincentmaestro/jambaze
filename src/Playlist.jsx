@@ -2,13 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Footer from './Footer'
 
-function Playlist () {
+function Playlist ({ spotifyConfig }) {
     const {id} = useParams();
-    const spotifyConfig = {
-        method: 'POST',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: 'grant_type=client_credentials&client_id=b14bea6109a141b8b15e857c903a7ef5&client_secret=1ff3731d1226404e8d4aed9d07bc4b87'
-    };
     const [loading, setLoading] = useState(true);
     const [playlist, setPlaylist] = useState(null);
     const [error, setError] = useState(null);
@@ -69,6 +64,9 @@ function Playlist () {
 
     return (
         <>
+            <Helmet>
+                {playlist && <title>Jambaze | {playlist.name}</title>}
+            </Helmet>
             {loading && <div className="spinner"></div>}
             {playlist && 
                 <div style={{background: `linear-gradient(rgba(17,24,39,0.75), rgba(17,24,39,0.75)), url(${playlist.images[0].url})`}} className="h-screen overflow-y-auto relative mobile:pt-4">
