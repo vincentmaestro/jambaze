@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import './App.css'
 import Navbar from './navbar';
 import Home from './Home';
 import Album from './Album';
@@ -9,6 +8,7 @@ import Artist from "./Artist";
 import Movie from './Movie';
 import Series from "./Series";
 import NotFound from "./NotFound";
+import './App.css'
 
 function App() {
   const spConfig = {
@@ -32,7 +32,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home spotifyConfig = {spConfig}/>} />
           <Route path="album/:id" element={<Album spotifyConfig = {spConfig} />} />
-          <Route path="playlist/:id" element={<Playlist spotifyConfig = {spConfig} />} />
+          {/* <Route path="playlist/:id" element={<Playlist spotifyConfig = {spConfig} />} /> */}
           <Route path="artist/:id" element={<Artist spotifyConfig = {spConfig} />} />
           <Route path='movie/:id' element={<Movie />} />
           <Route path='series/:id' element={<Series />} />

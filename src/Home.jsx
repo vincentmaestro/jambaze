@@ -31,26 +31,32 @@ const Home = ({ spotifyConfig }) => {
     const playlistProps = [
         {
             id: '37i9dQZEVXbKY7jLzlJ11V',
+            name: 'NaijaTop50',
             cover: 'https://charts-images.scdn.co/assets/locale_en/regional/daily/region_ng_large.jpg'
         },
         {
             id: '37i9dQZF1DWZhHP4V8F4YE',
+            name: 'ViralAfrica',
             cover: 'https://i.scdn.co/image/ab67706f0000000333533b1fff2951d487029ab5'
         },
         {
             id: '37i9dQZEVXbMDoHDwVN2tF',
+            name: 'GlobalTop50',
             cover: 'https://charts-images.scdn.co/assets/locale_en/regional/daily/region_global_large.jpg'
         },
         {
             id: '37i9dQZF1DX0XUsuxWHRQd',
+            name: 'Rap',
             cover: 'https://i.scdn.co/image/ab67706f000000036be5de2571827dbd9c823d6c'
         },
         {
             id: '37i9dQZF1DX6PKX5dyBKeq',
+            name: 'UkRap',
             cover: 'https://i.scdn.co/image/ab67706f000000037b3bab5a76cba1f2e619692c'
         },
         {
             id: '37i9dQZF1DWYs83FtTMQFw',
+            name: 'HotRhythmic',
             cover: 'https://i.scdn.co/image/ab67706f0000000339767035917d66876fb08035'
         }
     ];
@@ -71,25 +77,13 @@ const Home = ({ spotifyConfig }) => {
         const requestToken = await fetch('https://accounts.spotify.com/api/token', spotifyConfig);
         const token = (await requestToken.json()).access_token;
 
-        const requestNaijaTop50 = await fetch('https://api.spotify.com/v1/playlists/37i9dQZEVXbKY7jLzlJ11V?fields=name%2Cdescription%2Cfollowers', {headers: {'Authorization': `Bearer ${token}`}});
-        const naijaTop50 = await requestNaijaTop50.json();
+        const playlistPromises = playlistProps.map(async (playlist) => {
+            const request = await fetch(`https://api.spotify.com/v1/playlists/${playlist.id}?fields=name%2Cdescription%2Cfollowers`, {headers: {'Authorization': `Bearer ${token}`}});
+            return request.json();
+        });
 
-        const requestViralAfrica = await fetch('https://api.spotify.com/v1/playlists/37i9dQZF1DWZhHP4V8F4YE?fields=name%2Cdescription%2Cfollowers', {headers: {'Authorization': `Bearer ${token}`}});
-        const viralAfrica = await requestViralAfrica.json();
-
-        const requestGlobalTop50 = await fetch('https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF?fields=name%2Cdescription%2Cfollowers', {headers: {'Authorization': `Bearer ${token}`}});
-        const globalTop50 = await requestGlobalTop50.json();
-
-        const requestRap = await fetch('https://api.spotify.com/v1/playlists/37i9dQZF1DX0XUsuxWHRQd?fields=name%2Cdescription%2Cfollowers', {headers: {'Authorization': `Bearer ${token}`}});
-        const rap = await requestRap.json();
-
-        const requestUKRap = await fetch('https://api.spotify.com/v1/playlists/37i9dQZF1DX6PKX5dyBKeq?fields=name%2Cdescription%2Cfollowers', {headers: {'Authorization': `Bearer ${token}`}});
-        const UKRap = await requestUKRap.json();
-
-        const requestHotRhythmic = await fetch('https://api.spotify.com/v1/playlists/37i9dQZF1DWYs83FtTMQFw?fields=name%2Cdescription%2Cfollowers', {headers: {'Authorization': `Bearer ${token}`}});
-        const hotRhythmic = await requestHotRhythmic.json();
-
-        return [naijaTop50, viralAfrica, globalTop50, rap, UKRap, hotRhythmic];
+        const playlists = await Promise.allSettled(playlistPromises);
+        return playlists;
     }
 
     async function fetchTrendingMovies() {
@@ -104,8 +98,8 @@ const Home = ({ spotifyConfig }) => {
             setAlbumCover(covers[Math.round(Math.random() * 5)])
         }, 10000);
 
-        getPlaylists()
-        .then(playlists => setPlaylists(playlists))
+        // getPlaylists()
+        // .then(playlists => setPlaylists(playlists))
         // .catch(err => console.error(err));
 
         fetchTrendingMovies()
@@ -162,7 +156,6 @@ const Home = ({ spotifyConfig }) => {
                 IFrameAPI.createController(element, options, callback);
             });
         })
-        // .catch(err => console.error(err));
     }
 
     function searchMovie(e) {
@@ -212,7 +205,7 @@ const Home = ({ spotifyConfig }) => {
                     <i className="fa-regular fa-circle-xmark hidden sticky top-6 left-[95%] text-3xl cursor-pointer transition-all duration-300 hover:text-red-500 z-10 mobile_m:text-2xl" id="close-player" />
                     <h1 className="text-center text-3xl">Search</h1>
                     <form className="flex justify-center items-center gap-x-[1%] py-5 mobile:gap-x-[4%]" onSubmit={searchMusical}>
-                        <input type="text" placeholder="song, artist, album" className="rounded-md outline-none px-4 py-[2px] mobile:px-2 mobile:w-[60%]" onChange={e => {searchedMusical.length == 0 ? setMusicalNotFound(false) : null, setSearchedMusical(e.target.value)}} />
+                        <input type="text" placeholder="song, artist, album" className="rounded-md outline-none p-2 mobile:px-2 w-[30%] mobile:w-[60%]" onChange={e => {searchedMusical.length == 0 ? setMusicalNotFound(false) : null, setSearchedMusical(e.target.value)}} />
                         <button type="submit"><i className="fa-solid fa-magnifying-glass"></i></button>
                     </form>
                     {searchedMusicalResult &&
@@ -270,20 +263,20 @@ const Home = ({ spotifyConfig }) => {
                     }
                 </div>
                 <div className="flex flex-wrap gap-x-[4%] gap-y-6 px-[4%] py-8 bg-stone-700 laptop_s:px-[2%] laptop_s:gap-x-[2%] tablet:px-[2%] tablet:justify-center tablet:gap-x-[6%] mobile:flex-col mobile:items-center mobile:gap-y-4">
-                    {playlists && playlists.map((playlist, index) => (
-                        <div key={index} className="flex items-center gap-x-[4%] w-[30%] pl-[1%] rounded-2xl bg-stone-600 cursor-pointer transition-colors duration-200 hover:bg-stone-400 laptop_s:w-[32%] tablet:w-[45%] mobile:w-[90%] mobile:pl-[2%] mobile:gap-x-[6%]" onClick={() => {searchedMusicalResult ? open(`playlist/${playlistProps[index].id}`, 'rel = noopener noreferrer') : navigate(`playlist/${playlistProps[index].id}`)}}>
+                    {playlistProps.map((playlist, index) => (
+                        <div key={index} className="flex items-center gap-x-[4%] w-[30%] pl-[1%] rounded-2xl bg-stone-600 transition-colors duration-200 hover:bg-stone-400 laptop_s:w-[32%] tablet:w-[45%] mobile:w-[90%] mobile:pl-[2%] mobile:gap-x-[6%]">
                             <div className="w-[18%] tablet:w-[20%]">
                                 <img src={playlistProps[index].cover} alt={playlist.name} />
                             </div>
                             <div className="w-[78%] tablet:w-[76%] mobile:w-[73%]">
                                 <h1 className="text-gray-300 text-xl tablet:text-2xl tablet:mb-[2px] mobile:text-3xl mobile:mb-0 mobile_m:text-2xl">{playlist.name}</h1>
-                                <p className="tablet:text-lg mobile:text-xl mobile_m:text-lg">{playlist.description}</p>
-                                <small className="tablet:text-[16px]">{playlist.followers.total.toLocaleString()} followers</small>
+                                {/* <p className="tablet:text-lg mobile:text-xl mobile_m:text-lg">{playlist.description}</p>
+                                <small className="tablet:text-[16px]">{playlist.followers.total.toLocaleString()} followers</small> */}
                             </div>
                         </div>
                     ))}
                 </div>
-                {!playlists && <div className="loading-playlists h-[240px] bg-stone-700"></div>}
+                {/* {!playlists && <div className="loading-playlists h-[240px] bg-stone-700"></div>} */}
             </section>
 
             <section className="movies">
